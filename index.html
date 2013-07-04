@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Poliastro by Pybonacci</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Poliastro</h1>
+        <h2>poliastro - Utilities and Python wrappers for Orbital Mechanics</h2>
+        <a href="https://github.com/Pybonacci/poliastro" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1></h1>
+
+<h1>
+<a name="poliastro" class="anchor" href="#poliastro"><span class="octicon octicon-link"></span></a>poliastro</h1>
+
+<h1>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h1>
+
+<ul>
+<li>
+<strong>Name</strong> poliastro</li>
+<li>
+<strong>Website</strong> <a href="https://github.com/Pybonacci/poliastro">https://github.com/Pybonacci/poliastro</a>
+</li>
+<li>
+<strong>Author</strong> Juan Luis Cano <a href="mailto:juanlu001@gmail.com">juanlu001@gmail.com</a>
+</li>
+<li>
+<strong>Version</strong> 0.1.0</li>
+</ul><p>These are some Python wrappers to Fortran and MATLAB subroutines useful in
+Orbital Mechanics, such as orbit propagation, solution of the Lambert's
+problem, conversion between position and velocity vectors and classical
+orbital elements and orbit plotting.</p>
+
+<h2>
+<a name="fortran-subroutines" class="anchor" href="#fortran-subroutines"><span class="octicon octicon-link"></span></a>Fortran subroutines</h2>
+
+<p>The core of poliastro is possible thanks to several Fortran subroutines,
+written by David A. Vallado for his book "Fundamentals of Astrodynamics and
+Applications" and available on the Internet as the <a href="http://celestrak.com/software/vallado-sw.asp">companion software of
+the book</a>.</p>
+
+<p>The author explicitly gave permission to redistribute these subroutines
+in this project under the current license.</p>
+
+<p>Some of them were slightly modified due to errors in the build process,
+the handling of relative errors in comparisons and to make them more
+suitable to use with different gravitational parameters.</p>
+
+<h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<p>poliastro requires NumPy and SciPy and is usually tested in these
+environments:</p>
+
+<ul>
+<li>Linux 64-bit</li>
+<li>Python 3.3</li>
+<li>NumPy 1.7.1</li>
+<li>SciPy 0.12.0</li>
+<li>oct2py 0.4.0 (optional, for numerical computation of bodies ephemerides)</li>
+</ul><p>Besides, a Fortran compiler is needed to build the extensions. poliastro
+is usually built with gfortran.</p>
+
+<p>There is no reason it shouldn't work under Windows or Mac OS X with
+properly configured tools (not tested).</p>
+
+<p>Python 2 compatibility might be accomplished with little syntax changes using
+<a href="https://pypi.python.org/pypi/3to2">3to2</a>.</p>
+
+<h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>To install poliastro from source, just type::</p>
+
+<pre><code>$ python setup.py install
+</code></pre>
+
+<p>This might require superuser privileges. To install in a local directory::</p>
+
+<pre><code>$ python setup.py install --user
+</code></pre>
+
+<p>Installations through PyPI are also supported::</p>
+
+<pre><code>$ pip install poliastro --user
+</code></pre>
+
+<p>It is recommended that you <strong>never ever use sudo</strong> with distutils, pip,
+setuptools and friends in Linux because you might seriously break your
+system <a href="http://wiki.python.org/moin/CheeseShopTutorial#Distutils_Installation">1_</a> <a href="http://stackoverflow.com/questions/4314376/how-can-i-install-a-python-egg-file/4314446#comment4690673_4314446">2_</a> <a href="http://workaround.org/easy-install-debian">3_</a> <a href="http://matplotlib.1069221.n5.nabble.com/Why-is-pip-not-mentioned-in-the-Installation-Documentation-tp39779p39812.html">4_</a>. Apart from <a href="http://stackoverflow.com/a/7143496/554319">per user directories</a>, other options
+are using <a href="http://pypi.python.org/pypi/virtualenv">virtualenv</a>  or <a href="http://stackoverflow.com/a/4325047/554319">local installations</a>.</p>
+
+<h1>
+<a name="testing" class="anchor" href="#testing"><span class="octicon octicon-link"></span></a>Testing</h1>
+
+<p>If installed correctly, this should work:</p>
+
+<pre><code>$ python -c "import poliastro; poliastro.test()"
+Running unit tests for poliastro
+[...]
+OK
+$ 
+</code></pre>
+
+<h1>
+<a name="bug-reporting" class="anchor" href="#bug-reporting"><span class="octicon octicon-link"></span></a>Bug reporting</h1>
+
+<p>I am one of those that writes bug-free code every single time, but if you
+think you've found one please refer to the  <a href="https://github.com/Pybonacci/poliastro/issues">issue tracker</a> on GitHub.</p>
+
+<h1>
+<a name="citing" class="anchor" href="#citing"><span class="octicon octicon-link"></span></a>Citing</h1>
+
+<p>If you use scikit-aero on your project, please
+<a href="juanlu001@gmail.com">drop me a line</a>.</p>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>poliastro is released under a 2-clause BSD license, hence allowing commercial
+use of the library. Please refer to the COPYING file.</p>
+
+<h1>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h1>
+
+<p>These tasks are in my checklist:</p>
+
+<ul>
+<li>Test in Windows</li>
+<li>Look for better ephemeris</li>
+<li>Expand constants module</li>
+<li>Investigate astropy integration</li>
+<li>Add examples</li>
+</ul><h1>
+<a name="faq" class="anchor" href="#faq"><span class="octicon octicon-link"></span></a>FAQ</h1>
+
+<h2>
+<a name="does-it-work-on-windows" class="anchor" href="#does-it-work-on-windows"><span class="octicon octicon-link"></span></a>Does it work on Windows?</h2>
+
+<p>I had some problems to find a free Fortran compiler for Windows 64-bit
+(but I am <a href="http://spyder-ide.blogspot.it/2012/08/scientific-python-distribution-for.html">not alone</a>). And probably configuring the paths to make
+oct2py and Octave work will be a pain too.</p>
+
+<p>Have you considered <a href="http://www.ubuntu.com/">choosing another operative system</a>?</p>
+
+<h2>
+<a name="whats-up-with-the-name" class="anchor" href="#whats-up-with-the-name"><span class="octicon octicon-link"></span></a>What's up with the name?</h2>
+
+<p>poliastro comes from Polimi, which is the shortened name of the Politecnico di
+Milano, the Italian university where I've been studying while writing this
+software. It's my tiny tribute to a place I've come to love. <em>Grazie mille!</em></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Pybonacci/poliastro/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Pybonacci/poliastro/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Pybonacci/poliastro"></a> is maintained by <a href="https://github.com/Pybonacci">Pybonacci</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
