@@ -115,9 +115,14 @@
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>poliastro requires NumPy, Astropy and matplotlib and is usually tested on Linux
-on Python 2.7 and Python 3.3 (single codebase).</p>
-<p>Besides, a Fortran compiler is needed to build the extensions. poliastro
+<p>poliastro requires the following Python packages:</p>
+<ul class="simple">
+<li>NumPy</li>
+<li>Astropy (for physical units handling and geometrical transforms)</li>
+<li>matplotlib (for plotting)</li>
+</ul>
+<p>It is usually tested on Linux on Python 2.7 and Python 3.3 (single codebase).
+A Fortran compiler is needed to build the extensions: poliastro
 is usually built with gfortran.</p>
 <p>There is no reason it shouldn&#8217;t work under Windows or Mac OS X with
 properly configured tools (not tested).</p>
@@ -125,17 +130,22 @@ properly configured tools (not tested).</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>To install poliastro just use pip:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install poliastro
+<div class="highlight-python"><div class="highlight"><pre>$ pip install numpy astropy matplotlib poliastro
 </pre></div>
 </div>
-<p>To install poliastro from source, just type:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ python setup.py install
+<p>To install poliastro from source, just clone the source:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ clone https://github.com/Pybonacci/poliastro.git
+$ cd poliastro/
+$ python setup.py install
 </pre></div>
 </div>
-<p>It is recommended that you <strong>never ever use sudo</strong> with distutils, pip,
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is recommended that you <strong>never ever use sudo</strong> with distutils, pip,
 setuptools and friends in Linux because you might seriously break your
 system [<a class="reference external" href="http://wiki.python.org/moin/CheeseShopTutorial#Distutils_Installation">1</a>][<a class="reference external" href="http://stackoverflow.com/questions/4314376/how-can-i-install-a-python-egg-file/4314446#comment4690673_4314446">2</a>][<a class="reference external" href="http://workaround.org/easy-install-debian">3</a>][<a class="reference external" href="http://matplotlib.1069221.n5.nabble.com/Why-is-pip-not-mentioned-in-the-Installation-Documentation-tp39779p39812.html">4</a>]. Options are <a class="reference external" href="http://stackoverflow.com/a/7143496/554319">per user directories</a>, <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a>
 or <a class="reference external" href="http://stackoverflow.com/a/4325047/554319">local installations</a>.</p>
+</div>
 </div>
 <div class="section" id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
@@ -147,6 +157,7 @@ OK
 $
 </pre></div>
 </div>
+<p>If for some reason any test fails, please report it in the <a class="reference external" href="https://github.com/Pybonacci/poliastro/issues">issue tracker</a>.</p>
 </div>
 </div>
 

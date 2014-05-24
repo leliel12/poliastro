@@ -76,6 +76,14 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#testing">Testing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#new-in-poliastro-0-2">New in poliastro 0.2</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
@@ -114,25 +122,36 @@
 <h1>poliastro - Astrodynamics in Python<a class="headerlink" href="#poliastro-astrodynamics-in-python" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" style="width: 300px">
 <img alt="Molniya orbit" src="_images/molniya.png" />
-<p class="caption">Plot of a Molniya orbit around the Earth
+<p class="caption">Plot of a <a class="reference external" href="http://en.wikipedia.org/wiki/Molniya_orbit">Molniya orbit</a> around the Earth
 (\(a = 26600\,\mathrm{km}, e = 0.75,
 i = 63.4 \mathrm{{}^{\circ}} \)).</p>
 </div>
-<p>poliastro is a collection of Python wrappers to Fortran subroutines useful in
-Orbital Mechanics, such as:</p>
+<p>poliastro is an open source collection of Python subroutines useful in
+Astrodynamics and Orbital Mechanics. It tries to provide a simple and
+intuitive API and handles physical quantities with units (thanks to
+<tt class="code docutils literal"><span class="pre">astropy.units</span></tt>). Some of its features are:</p>
 <ul class="simple">
 <li>Orbit propagation</li>
 <li>Conversion between position and velocity vectors and classical orbital
 elements</li>
 <li>Hohmann and bielliptic maneuvers computation</li>
-<li>Orbit plotting</li>
+<li>Trajectory plotting</li>
 </ul>
 <p>And more to come!</p>
+<p>The <a class="reference external" href="https://github.com/Pybonacci/poliastro">source code</a>, <a class="reference external" href="https://github.com/Pybonacci/poliastro/issues">issue tracker</a> and <a class="reference external" href="https://github.com/Pybonacci/poliastro/wiki/">wiki</a> are hosted on GitHub, and all
+contributions and feedback are more than welcome.</p>
+<p>poliastro works on both Python 2 and 3 and is released under a 2-clause
+BSD license, hence allowing commercial use of the library.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">poliastro.examples</span> <span class="kn">import</span> <span class="n">molniya</span>
 
 <span class="n">molniya</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>poliastro relies on some Fortran subroutines written by David A. Vallado for
+his book &#8220;Fundamentals of Astrodynamics and Applications&#8221; and available on
+the Internet as the <a class="reference external" href="http://celestrak.com/software/vallado-sw.asp">companion software of the book</a>.
+The author explicitly gave permission to redistribute these subroutines
+in this project under the current license.</p>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -141,6 +160,14 @@ elements</li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#new-in-poliastro-0-2">New in poliastro 0.2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python Module Index &mdash; poliastro 0.2-dev documentation</title>
+  <title>What’s new &mdash; poliastro 0.2-dev documentation</title>
   
 
   
@@ -45,9 +45,8 @@
 
   
     <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
- 
-
-
+        <link rel="next" title="API Reference" href="api.html"/>
+        <link rel="prev" title="User guide" href="user_guide.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -71,7 +70,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
@@ -79,11 +78,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#overview">Overview</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#new-in-poliastro-0-2">New in poliastro 0.2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">What&#8217;s new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#new-in-poliastro-0-2">New in poliastro 0.2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
@@ -114,53 +113,45 @@
         <div class="rst-content">
           <ul class="wy-breadcrumbs">
   <li><a href="index.html">Docs</a> &raquo;</li>
-  <li><a href=""></a></li>
+  <li><a href="">What&#8217;s new</a></li>
   
 </ul>
 <hr/>
 
           
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-p"><strong>p</strong></a>
-   </div>
-
-   <table class="indextable modindextable" cellspacing="0" cellpadding="2">
-     <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
-     <tr class="cap" id="cap-p"><td></td><td>
-       <strong>p</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <tt class="xref">poliastro</tt></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="api.html#module-poliastro.bodies"><tt class="xref">poliastro.bodies</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="api.html#module-poliastro.maneuver"><tt class="xref">poliastro.maneuver</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="api.html#module-poliastro.twobody"><tt class="xref">poliastro.twobody</tt></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&nbsp;&nbsp;&nbsp;
-       <a href="api.html#module-poliastro.util"><tt class="xref">poliastro.util</tt></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="what-s-new">
+<h1>What&#8217;s new<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="new-in-poliastro-0-2">
+<h2>New in poliastro 0.2<a class="headerlink" href="#new-in-poliastro-0-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>Totally refactored code</strong> to provide a more pythonic API (see <a class="reference external" href="https://github.com/Pybonacci/poliastro/pull/14">PR #14</a>
+and <a class="reference external" href="https://github.com/Pybonacci/poliastro/wiki">wiki</a> for further information).</li>
+<li>Mandatory use of <strong>physical units</strong> through <tt class="code docutils literal"><span class="pre">astropy.units</span></tt>.</li>
+<li>Easy plotting of orbits in two dimensions using matplotlib.</li>
+</ul>
+<p>These features were removed temporarily not to block the release and will
+see the light again in poliastro 0.3:</p>
+<ul class="simple">
+<li>Conversion between anomalies.</li>
+<li>Ephemerides calculations, will look into Skyfield and the JPL ephemerides
+prepared by Brandon Rhodes (see <a class="reference external" href="https://github.com/Pybonacci/poliastro/issues/4">issue #4</a>).</li>
+<li>Lambert problem solving.</li>
+<li>Perturbation analysis.</li>
+</ul>
+</div>
+</div>
 
 
           <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="user_guide.html" class="btn btn-neutral" title="User guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
