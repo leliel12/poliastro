@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; poliastro 0.2-dev documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.2-dev',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
+        <link rel="next" title="API Reference" href="api.html"/>
+        <link rel="prev" title="poliastro - Astrodynamics in Python" href="index.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> poliastro</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">poliastro</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Getting started</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>poliastro requires NumPy, Astropy and matplotlib and is usually tested on Linux
+on Python 2.7 and Python 3.3 (single codebase).</p>
+<p>Besides, a Fortran compiler is needed to build the extensions. poliastro
+is usually built with gfortran.</p>
+<p>There is no reason it shouldn&#8217;t work under Windows or Mac OS X with
+properly configured tools (not tested).</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install poliastro just use pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install poliastro
+</pre></div>
+</div>
+<p>To install poliastro from source, just type:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python setup.py install
+</pre></div>
+</div>
+<p>It is recommended that you <strong>never ever use sudo</strong> with distutils, pip,
+setuptools and friends in Linux because you might seriously break your
+system [<a class="reference external" href="http://wiki.python.org/moin/CheeseShopTutorial#Distutils_Installation">1</a>][<a class="reference external" href="http://stackoverflow.com/questions/4314376/how-can-i-install-a-python-egg-file/4314446#comment4690673_4314446">2</a>][<a class="reference external" href="http://workaround.org/easy-install-debian">3</a>][<a class="reference external" href="http://matplotlib.1069221.n5.nabble.com/Why-is-pip-not-mentioned-in-the-Installation-Documentation-tp39779p39812.html">4</a>]. Options are <a class="reference external" href="http://stackoverflow.com/a/7143496/554319">per user directories</a>, <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a>
+or <a class="reference external" href="http://stackoverflow.com/a/4325047/554319">local installations</a>.</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>If installed correctly, the tests can be run using py.test:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python -c &quot;import poliastro; poliastro.test()&quot;
+Running unit tests for poliastro
+[...]
+OK
+$
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="poliastro - Astrodynamics in Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, Juan Luis Cano Rodríguez.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>
