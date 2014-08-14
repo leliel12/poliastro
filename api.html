@@ -45,7 +45,7 @@
 
   
     <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
-        <link rel="prev" title="Getting started" href="getting_started.html"/> 
+        <link rel="prev" title="What’s new" href="changelog.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -76,10 +76,19 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#testing">Testing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#new-in-poliastro-0-2">New in poliastro 0.2</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-poliastro.bodies">poliastro.bodies module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.twobody">poliastro.twobody module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-poliastro.maneuver">poliastro.maneuver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-poliastro.bodies">poliastro.bodies module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -112,69 +121,11 @@
           
   <div class="section" id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-poliastro.bodies">
-<span id="poliastro-bodies-module"></span><h2>poliastro.bodies module<a class="headerlink" href="#module-poliastro.bodies" title="Permalink to this headline">¶</a></h2>
-<p>Bodies of the Solar System.</p>
-<p>Contains some predefined bodies of the Solar System:</p>
-<ul class="simple">
-<li>Sun (☉)</li>
-<li>Earth (♁)</li>
-</ul>
-<p>and a way to define new bodies (<cite>Body</cite> class).</p>
-<div class="section" id="todo">
-<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Add more parameters (e.g. J2)</li>
-</ul>
-<dl class="class">
-<dt id="poliastro.bodies.Body">
-<em class="property">class </em><tt class="descclassname">poliastro.bodies.</tt><tt class="descname">Body</tt><big>(</big><em>k</em>, <em>name=None</em>, <em>symbol=None</em>, <em>R=&lt;Quantity 0 km&gt;</em><big>)</big><a class="headerlink" href="#poliastro.bodies.Body" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-<p>Class to represent a body of the Solar System.</p>
-</dd></dl>
-
-</div>
-</div>
-<div class="section" id="module-poliastro.maneuver">
-<span id="poliastro-maneuver-module"></span><h2>poliastro.maneuver module<a class="headerlink" href="#module-poliastro.maneuver" title="Permalink to this headline">¶</a></h2>
-<p>Orbital maneuvers.</p>
-<dl class="class">
-<dt id="poliastro.maneuver.Maneuver">
-<em class="property">class </em><tt class="descclassname">poliastro.maneuver.</tt><tt class="descname">Maneuver</tt><big>(</big><em>*vals</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
-<p>Class to represent a Maneuver.</p>
-<dl class="classmethod">
-<dt id="poliastro.maneuver.Maneuver.bielliptic">
-<em class="property">classmethod </em><tt class="descname">bielliptic</tt><big>(</big><em>ss_i</em>, <em>r_b</em>, <em>r_f</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.bielliptic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute a bielliptic transfer between two circular orbits.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="poliastro.maneuver.Maneuver.get_total_cost">
-<tt class="descname">get_total_cost</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.get_total_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns otal cost of the maneuver.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="poliastro.maneuver.Maneuver.get_total_time">
-<tt class="descname">get_total_time</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.get_total_time" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns total time of the maneuver.</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="poliastro.maneuver.Maneuver.hohmann">
-<em class="property">classmethod </em><tt class="descname">hohmann</tt><big>(</big><em>ss_i</em>, <em>r_f</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.hohmann" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute a Hohmann transfer between two circular orbits.</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="module-poliastro.twobody">
 <span id="poliastro-twobody-module"></span><h2>poliastro.twobody module<a class="headerlink" href="#module-poliastro.twobody" title="Permalink to this headline">¶</a></h2>
 <p>Two body problem.</p>
-<div class="section" id="id1">
-<h3>TODO<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="todo">
+<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Include other element sets and non-elliptic orbits.</li>
 <li>Improve consistency of units.</li>
@@ -183,6 +134,26 @@
 <dt id="poliastro.twobody.State">
 <em class="property">class </em><tt class="descclassname">poliastro.twobody.</tt><tt class="descname">State</tt><a class="headerlink" href="#poliastro.twobody.State" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to represent the position of a body wrt to an attractor.</p>
+<dl class="classmethod">
+<dt id="poliastro.twobody.State.from_vectors">
+<em class="property">classmethod </em><tt class="descname">from_vectors</tt><big>(</big><em>attractor</em>, <em>r</em>, <em>v</em>, <em>epoch=&lt;Time object: scale='utc' format='jyear_str' value=J2000.000&gt;</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.from_vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>State</cite> object from position and velocity vectors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>attractor</strong> (<em>Body</em>) &#8211; Main attractor.</li>
+<li><strong>r</strong> (<em>Quantity</em>) &#8211; Position vector wrt attractor center.</li>
+<li><strong>v</strong> (<em>Quantity</em>) &#8211; Velocity vector.</li>
+<li><strong>epoch</strong> (<em>Time, optional</em>) &#8211; Epoch, default to J2000.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="classmethod">
 <dt id="poliastro.twobody.State.from_elements">
 <em class="property">classmethod </em><tt class="descname">from_elements</tt><big>(</big><em>attractor</em>, <em>a</em>, <em>ecc</em>, <em>inc</em>, <em>raan</em>, <em>argp</em>, <em>nu</em>, <em>epoch=&lt;Time object: scale='utc' format='jyear_str' value=J2000.000&gt;</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.from_elements" title="Permalink to this definition">¶</a></dt>
@@ -208,18 +179,228 @@
 </dd></dl>
 
 <dl class="classmethod">
-<dt id="poliastro.twobody.State.from_vectors">
-<em class="property">classmethod </em><tt class="descname">from_vectors</tt><big>(</big><em>attractor</em>, <em>r</em>, <em>v</em>, <em>epoch=&lt;Time object: scale='utc' format='jyear_str' value=J2000.000&gt;</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.from_vectors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return <cite>State</cite> object from position and velocity vectors.</p>
+<dt id="poliastro.twobody.State.circular">
+<em class="property">classmethod </em><tt class="descname">circular</tt><big>(</big><em>attractor</em>, <em>alt</em>, <em>inc=&lt;Quantity 0 deg&gt;</em>, <em>raan=&lt;Quantity 0 deg&gt;</em>, <em>arglat=&lt;Quantity 0 deg&gt;</em>, <em>epoch=&lt;Time object: scale='utc' format='jyear_str' value=J2000.000&gt;</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.circular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>State</cite> corresponding to a circular orbit.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>attractor</strong> (<em>Body</em>) &#8211; Main attractor.</li>
-<li><strong>r</strong> (<em>Quantity</em>) &#8211; Position vector wrt attractor center.</li>
-<li><strong>v</strong> (<em>Quantity</em>) &#8211; Velocity vector.</li>
+<li><strong>alt</strong> (<em>Quantity</em>) &#8211; Altitude over surface.</li>
+<li><strong>inc</strong> (<em>Quantity, optional</em>) &#8211; Inclination, default to 0 deg (equatorial orbit).</li>
+<li><strong>raan</strong> (<em>Quantity, optional</em>) &#8211; Right ascension of the ascending node, default to 0 deg.</li>
+<li><strong>arglat</strong> (<em>Quantity, optional</em>) &#8211; Argument of latitude, default to 0 deg.</li>
 <li><strong>epoch</strong> (<em>Time, optional</em>) &#8211; Epoch, default to J2000.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.elements">
+<tt class="descname">elements</tt><a class="headerlink" href="#poliastro.twobody.State.elements" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classical orbital elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.a">
+<tt class="descname">a</tt><a class="headerlink" href="#poliastro.twobody.State.a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Semimajor axis.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.p">
+<tt class="descname">p</tt><a class="headerlink" href="#poliastro.twobody.State.p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Semilatus rectum.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.r_p">
+<tt class="descname">r_p</tt><a class="headerlink" href="#poliastro.twobody.State.r_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of pericenter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.r_a">
+<tt class="descname">r_a</tt><a class="headerlink" href="#poliastro.twobody.State.r_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of apocenter.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.ecc">
+<tt class="descname">ecc</tt><a class="headerlink" href="#poliastro.twobody.State.ecc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Eccentricity.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.inc">
+<tt class="descname">inc</tt><a class="headerlink" href="#poliastro.twobody.State.inc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inclination.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.raan">
+<tt class="descname">raan</tt><a class="headerlink" href="#poliastro.twobody.State.raan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right ascension of the ascending node.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.argp">
+<tt class="descname">argp</tt><a class="headerlink" href="#poliastro.twobody.State.argp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Argument of the perigee.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.nu">
+<tt class="descname">nu</tt><a class="headerlink" href="#poliastro.twobody.State.nu" title="Permalink to this definition">¶</a></dt>
+<dd><p>True anomaly.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.period">
+<tt class="descname">period</tt><a class="headerlink" href="#poliastro.twobody.State.period" title="Permalink to this definition">¶</a></dt>
+<dd><p>Period of the orbit.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.n">
+<tt class="descname">n</tt><a class="headerlink" href="#poliastro.twobody.State.n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean motion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.twobody.State.rv">
+<tt class="descname">rv</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.twobody.State.rv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Position and velocity vectors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.twobody.State.propagate">
+<tt class="descname">propagate</tt><big>(</big><em>time_of_flight</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.propagate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagate this <cite>State</cite> some <cite>time</cite> and return the result.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.twobody.State.plot2D">
+<tt class="descname">plot2D</tt><big>(</big><em>ax=None</em>, <em>num=100</em>, <em>osculating=True</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.plot2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots state and osculating orbit in their plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ax</strong> (<em>Axes, optional</em>) &#8211; Matplotlib axes where plotting should be performed. If not given,
+new ones will be created.</li>
+<li><strong>num</strong> (<em>int, optional</em>) &#8211; Number of points, default to 100.</li>
+<li><strong>osculating</strong> (<em>bool, optional</em>) &#8211; Whether to plot the osculating orbit, default to yes.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>TODO: I still miss a way to plot several orbits in one plot. Probably
+it&#8217;s time to create some plotting.py module, with a OrbitPlotter where
+I can hold things like the plane.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.twobody.State.plot">
+<tt class="descname">plot</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.twobody.State.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut to <cite>plot2D</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-poliastro.maneuver">
+<span id="poliastro-maneuver-module"></span><h2>poliastro.maneuver module<a class="headerlink" href="#module-poliastro.maneuver" title="Permalink to this headline">¶</a></h2>
+<p>Orbital maneuvers.</p>
+<dl class="class">
+<dt id="poliastro.maneuver.Maneuver">
+<em class="property">class </em><tt class="descclassname">poliastro.maneuver.</tt><tt class="descname">Maneuver</tt><big>(</big><em>*impulses</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent a Maneuver.</p>
+<dl class="method">
+<dt id="poliastro.maneuver.Maneuver.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*impulses</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>impulses</strong> (<em>list</em>) &#8211; List of pairs (delta_time, delta_velocity)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>TODO: Fix docstring, *args convention</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="poliastro.maneuver.Maneuver.impulse">
+<em class="property">classmethod </em><tt class="descname">impulse</tt><big>(</big><em>dv</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.impulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single impulse at current time.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="poliastro.maneuver.Maneuver.hohmann">
+<em class="property">classmethod </em><tt class="descname">hohmann</tt><big>(</big><em>ss_i</em>, <em>r_f</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.hohmann" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a Hohmann transfer between two circular orbits.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="poliastro.maneuver.Maneuver.bielliptic">
+<em class="property">classmethod </em><tt class="descname">bielliptic</tt><big>(</big><em>ss_i</em>, <em>r_b</em>, <em>r_f</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.bielliptic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute a bielliptic transfer between two circular orbits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.maneuver.Maneuver.get_total_time">
+<tt class="descname">get_total_time</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.get_total_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns total time of the maneuver.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.maneuver.Maneuver.get_total_cost">
+<tt class="descname">get_total_cost</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.get_total_cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns otal cost of the maneuver.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-poliastro.bodies">
+<span id="poliastro-bodies-module"></span><h2>poliastro.bodies module<a class="headerlink" href="#module-poliastro.bodies" title="Permalink to this headline">¶</a></h2>
+<p>Bodies of the Solar System.</p>
+<p>Contains some predefined bodies of the Solar System:</p>
+<ul class="simple">
+<li>Sun (☉)</li>
+<li>Earth (♁)</li>
+</ul>
+<p>and a way to define new bodies (<a class="reference internal" href="#poliastro.bodies.Body" title="poliastro.bodies.Body"><tt class="xref py py-class docutils literal"><span class="pre">Body</span></tt></a> class).</p>
+<p>TODO: Add more parameters (e.g. J2)</p>
+<dl class="class">
+<dt id="poliastro.bodies.Body">
+<em class="property">class </em><tt class="descclassname">poliastro.bodies.</tt><tt class="descname">Body</tt><big>(</big><em>k</em>, <em>name=None</em>, <em>symbol=None</em>, <em>R=&lt;Quantity 0 km&gt;</em><big>)</big><a class="headerlink" href="#poliastro.bodies.Body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent a body of the Solar System.</p>
+<dl class="method">
+<dt id="poliastro.bodies.Body.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>k</em>, <em>name=None</em>, <em>symbol=None</em>, <em>R=&lt;Quantity 0 km&gt;</em><big>)</big><a class="headerlink" href="#poliastro.bodies.Body.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>k</strong> (<em>Quantity</em>) &#8211; Standard gravitational parameter</li>
+<li><strong>name</strong> (<em>str, optional</em>) &#8211; Name of the body, default to None.</li>
+<li><strong>symbol</strong> (<em>str, optional</em>) &#8211; Symbol for the body, default to None.</li>
+<li><strong>R</strong> (<em>Quantity, optional</em>) &#8211; Radius of the body, default to 0 km.</li>
 </ul>
 </td>
 </tr>
@@ -229,7 +410,6 @@
 
 </dd></dl>
 
-</div>
 </div>
 <div class="section" id="module-poliastro.util">
 <span id="poliastro-util-module"></span><h2>poliastro.util module<a class="headerlink" href="#module-poliastro.util" title="Permalink to this headline">¶</a></h2>
@@ -261,13 +441,13 @@ unit.  If neither are provided, it is assumed to be degrees.</li>
 <p class="rubric">Notes</p>
 <p>This is just a convenience function around
 <cite>astropy.coordinates.angles.rotation_matrix</cite>.
-This performs a so-called active or alibi transformation: rotates the
+This performs a so-called <em>active</em> or <em>alibi</em> transformation: rotates the
 vector while the coordinate system remains unchanged. To do the opposite
-operation (passive or alias transformation) call the function as
-<tt class="docutils literal"><span class="pre">rotate(vec,</span> <span class="pre">ax,</span> <span class="pre">-angle)</span></tt> or use the convenience function <cite>transform</cite>,
-see <cite>[1]_</cite>.</p>
+operation (<em>passive</em> or <em>alias</em> transformation) call the function as
+<tt class="docutils literal"><span class="pre">rotate(vec,</span> <span class="pre">ax,</span> <span class="pre">-angle,</span> <span class="pre">unit)</span></tt> or use the convenience function
+<a class="reference internal" href="#poliastro.util.transform" title="poliastro.util.transform"><tt class="xref py py-func docutils literal"><span class="pre">transform()</span></tt></a>, see [1].</p>
 <p class="rubric">References</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
+<table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td><a class="reference external" href="http://en.wikipedia.org/wiki/Rotation_matrix#Ambiguities">http://en.wikipedia.org/wiki/Rotation_matrix#Ambiguities</a></td></tr>
@@ -281,8 +461,8 @@ see <cite>[1]_</cite>.</p>
 <dd><p>Rotates a coordinate system around axis a positive right-handed angle.</p>
 <p class="rubric">Notes</p>
 <p>This is a convenience function, equivalent to
-<cite>rotate(vec, -angle, axis, unit)</cite>.
-Refer to the documentation of that function for further information.</p>
+<tt class="docutils literal"><span class="pre">rotate(vec,</span> <span class="pre">-angle,</span> <span class="pre">axis,</span> <span class="pre">unit)</span></tt>.
+Refer to the documentation of <a class="reference internal" href="#poliastro.util.rotate" title="poliastro.util.rotate"><tt class="xref py py-func docutils literal"><span class="pre">rotate()</span></tt></a> for further information.</p>
 </dd></dl>
 
 </div>
@@ -294,7 +474,7 @@ Refer to the documentation of that function for further information.</p>
     <div class="rst-footer-buttons">
       
       
-        <a href="getting_started.html" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral" title="What’s new"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -302,7 +482,7 @@ Refer to the documentation of that function for further information.</p>
   <hr/>
 
   <p>
-      &copy; Copyright 2014, Juan Luis Cano Rodríguez.
+      &copy; Copyright 2013-2014, Juan Luis Cano Rodríguez.
   </p>
 
   <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>

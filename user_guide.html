@@ -79,6 +79,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
@@ -86,9 +87,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -171,11 +172,15 @@ a subclass of NumPy arrays.</p>
 <img alt="Plot of the orbit" src="_images/curtis.png" />
 </div>
 <p>If we&#8217;re working on interactive mode (for example, using the wonderful IPython
-notebook) we can immediately plot the current state typing <tt class="code docutils literal"><span class="pre">ss.plot()</span></tt>:
-this plot is made in the so called <em>perifocal frame</em>, which means we&#8217;re
-visualizing the plane of the orbit itself, the \(x\) axis points to the
-pericenter and the \(y\) axis is turned \(90 \mathrm{^\circ}\) in the
-direction of the orbit. The dotted line represents the <em>osculating orbit</em>:
+notebook) we can immediately plot the current state typing <tt class="code docutils literal"><span class="pre">ss.plot()</span></tt> in
+the so called <em>perifocal frame</em> which means:</p>
+<ul class="simple">
+<li>we&#8217;re visualizing the plane of the orbit itself,</li>
+<li>the \(x\) axis points to the pericenter, and</li>
+<li>the \(y\) axis is turned \(90 \mathrm{^\circ}\) in the
+direction of the orbit.</li>
+</ul>
+<p>The dotted line represents the <em>osculating orbit</em>:
 the instantaneous Keplerian orbit at that point. This is relevant in the
 context of perturbations, when the object shall deviate from its Keplerian
 orbit.</p>
@@ -185,7 +190,7 @@ orbit.</p>
 <p>We can also define a <a class="reference internal" href="api.html#poliastro.twobody.State" title="poliastro.twobody.State"><tt class="xref py py-class docutils literal"><span class="pre">State</span></tt></a> using a set of
 six parameters called orbital elements. Although there are several of
 this element sets, each one with its advantages and drawbacks, right now
-poliastro just support the <em>classical orbital elements</em>:</p>
+poliastro supports the <em>classical orbital elements</em>:</p>
 <ul class="simple">
 <li>Semimajor axis \(a\).</li>
 <li>Eccentricity \(e\).</li>
@@ -195,6 +200,12 @@ poliastro just support the <em>classical orbital elements</em>:</p>
 <li>True anomaly \(\nu\).</li>
 </ul>
 </div>
+</div>
+<div class="section" id="changing-the-orbit-maneuver-objects">
+<h2>Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects<a class="headerlink" href="#changing-the-orbit-maneuver-objects" title="Permalink to this headline">¶</a></h2>
+<p>poliastro helps us to define several in-plane and general out-of-plane
+maneuvers with the <a class="reference internal" href="api.html#poliastro.maneuver.Maneuver" title="poliastro.maneuver.Maneuver"><tt class="xref py py-class docutils literal"><span class="pre">Maneuver</span></tt></a> inside the
+<a class="reference internal" href="api.html#module-poliastro.maneuver" title="poliastro.maneuver"><tt class="xref py py-mod docutils literal"><span class="pre">poliastro.maneuver</span></tt></a> module.</p>
 </div>
 </div>
 
@@ -214,7 +225,7 @@ poliastro just support the <em>classical orbital elements</em>:</p>
   <hr/>
 
   <p>
-      &copy; Copyright 2014, Juan Luis Cano Rodríguez.
+      &copy; Copyright 2013-2014, Juan Luis Cano Rodríguez.
   </p>
 
   <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
