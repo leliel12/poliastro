@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; poliastro 0.2-dev documentation</title>
+  <title>API Reference &mdash; poliastro 0.2.0 documentation</title>
   
 
   
@@ -22,7 +22,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:'./',
-        VERSION:'0.2-dev',
+        VERSION:'0.2.0',
         COLLAPSE_INDEX:false,
         FILE_SUFFIX:'.html',
         HAS_SOURCE:  true
@@ -39,12 +39,12 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
-    <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
+    <link rel="top" title="poliastro 0.2.0 documentation" href="index.html"/>
         <link rel="prev" title="What’s new" href="changelog.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -79,6 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#more-advanced-plotting-orbitplotter-objects">More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
@@ -89,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.twobody">poliastro.twobody module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-poliastro.plotting">poliastro.plotting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -123,13 +125,6 @@
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-poliastro.twobody">
 <span id="poliastro-twobody-module"></span><h2>poliastro.twobody module<a class="headerlink" href="#module-poliastro.twobody" title="Permalink to this headline">¶</a></h2>
-<p>Two body problem.</p>
-<div class="section" id="todo">
-<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Include other element sets and non-elliptic orbits.</li>
-<li>Improve consistency of units.</li>
-</ul>
 <dl class="class">
 <dt id="poliastro.twobody.State">
 <em class="property">class </em><tt class="descclassname">poliastro.twobody.</tt><tt class="descname">State</tt><a class="headerlink" href="#poliastro.twobody.State" title="Permalink to this definition">¶</a></dt>
@@ -272,10 +267,34 @@
 <dd><p>Mean motion.</p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="poliastro.twobody.State.h">
+<tt class="descname">h</tt><a class="headerlink" href="#poliastro.twobody.State.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific angular momentum.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.e_vec">
+<tt class="descname">e_vec</tt><a class="headerlink" href="#poliastro.twobody.State.e_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Eccentricity vector.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="poliastro.twobody.State.h_vec">
+<tt class="descname">h_vec</tt><a class="headerlink" href="#poliastro.twobody.State.h_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specific angular momentum vector.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="poliastro.twobody.State.rv">
 <tt class="descname">rv</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.twobody.State.rv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Position and velocity vectors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.twobody.State.pqw">
+<tt class="descname">pqw</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.twobody.State.pqw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perifocal frame (PQW) vectors.</p>
 </dd></dl>
 
 <dl class="method">
@@ -285,38 +304,26 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="poliastro.twobody.State.plot2D">
-<tt class="descname">plot2D</tt><big>(</big><em>ax=None</em>, <em>num=100</em>, <em>osculating=True</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.plot2D" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots state and osculating orbit in their plane.</p>
+<dt id="poliastro.twobody.State.apply_maneuver">
+<tt class="descname">apply_maneuver</tt><big>(</big><em>maneuver</em>, <em>intermediate=False</em><big>)</big><a class="headerlink" href="#poliastro.twobody.State.apply_maneuver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns resulting State after applying maneuver to self.</p>
+<p>Optionally return intermediate states (default to False).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ax</strong> (<em>Axes, optional</em>) &#8211; Matplotlib axes where plotting should be performed. If not given,
-new ones will be created.</li>
-<li><strong>num</strong> (<em>int, optional</em>) &#8211; Number of points, default to 100.</li>
-<li><strong>osculating</strong> (<em>bool, optional</em>) &#8211; Whether to plot the osculating orbit, default to yes.</li>
+<li><strong>maneuver</strong> (<em>Maneuver</em>) &#8211; Maneuver to apply.</li>
+<li><strong>intermediate</strong> (<em>bool, optional</em>) &#8211; Return intermediate states, default to False.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Notes</p>
-<p>TODO: I still miss a way to plot several orbits in one plot. Probably
-it&#8217;s time to create some plotting.py module, with a OrbitPlotter where
-I can hold things like the plane.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="poliastro.twobody.State.plot">
-<tt class="descname">plot</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.twobody.State.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shortcut to <cite>plot2D</cite>.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
 </div>
 <div class="section" id="module-poliastro.maneuver">
 <span id="poliastro-maneuver-module"></span><h2>poliastro.maneuver module<a class="headerlink" href="#module-poliastro.maneuver" title="Permalink to this headline">¶</a></h2>
@@ -325,6 +332,17 @@ I can hold things like the plane.</p>
 <dt id="poliastro.maneuver.Maneuver">
 <em class="property">class </em><tt class="descclassname">poliastro.maneuver.</tt><tt class="descname">Maneuver</tt><big>(</big><em>*impulses</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to represent a Maneuver.</p>
+<p>Each <tt class="docutils literal"><span class="pre">Maneuver</span></tt> consists on a list of impulses \(\Delta v_i\)
+(changes in velocity) each one applied at a certain instant \(t_i\).
+You can access them directly indexing the <tt class="docutils literal"><span class="pre">Maneuver</span></tt> object itself.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">man</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="p">((</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">man</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">(&lt;Quantity 0 s&gt;, &lt;Quantity [1,0,0] km / s&gt;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">man</span><span class="o">.</span><span class="n">impulses</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">(&lt;Quantity 10 s&gt;, &lt;Quantity [1,0,0] km / s&gt;)</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="poliastro.maneuver.Maneuver.__init__">
 <tt class="descname">__init__</tt><big>(</big><em>*impulses</em><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.__init__" title="Permalink to this definition">¶</a></dt>
@@ -368,7 +386,7 @@ I can hold things like the plane.</p>
 <dl class="method">
 <dt id="poliastro.maneuver.Maneuver.get_total_cost">
 <tt class="descname">get_total_cost</tt><big>(</big><big>)</big><a class="headerlink" href="#poliastro.maneuver.Maneuver.get_total_cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns otal cost of the maneuver.</p>
+<dd><p>Returns total cost of the maneuver.</p>
 </dd></dl>
 
 </dd></dl>
@@ -406,6 +424,72 @@ I can hold things like the plane.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-poliastro.plotting">
+<span id="poliastro-plotting-module"></span><h2>poliastro.plotting module<a class="headerlink" href="#module-poliastro.plotting" title="Permalink to this headline">¶</a></h2>
+<p>Plotting utilities.</p>
+<dl class="function">
+<dt id="poliastro.plotting.plot">
+<tt class="descclassname">poliastro.plotting.</tt><tt class="descname">plot</tt><big>(</big><em>state</em><big>)</big><a class="headerlink" href="#poliastro.plotting.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a <tt class="docutils literal"><span class="pre">State</span></tt>.</p>
+<p>For more advanced tuning, use the <a class="reference internal" href="#poliastro.plotting.OrbitPlotter" title="poliastro.plotting.OrbitPlotter"><tt class="xref py py-class docutils literal"><span class="pre">OrbitPlotter</span></tt></a> class.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="poliastro.plotting.OrbitPlotter">
+<em class="property">class </em><tt class="descclassname">poliastro.plotting.</tt><tt class="descname">OrbitPlotter</tt><big>(</big><em>ax=None</em>, <em>num_points=100</em><big>)</big><a class="headerlink" href="#poliastro.plotting.OrbitPlotter" title="Permalink to this definition">¶</a></dt>
+<dd><p>OrbitPlotter class.</p>
+<p>This class holds the perifocal plane of the first
+<a class="reference internal" href="#poliastro.twobody.State" title="poliastro.twobody.State"><tt class="xref py py-class docutils literal"><span class="pre">State</span></tt></a> plotted in it using
+<a class="reference internal" href="#poliastro.plotting.plot" title="poliastro.plotting.plot"><tt class="xref py py-meth docutils literal"><span class="pre">plot()</span></tt></a>, so all following
+plots will be projected on that plane. Alternatively, you can call
+<a class="reference internal" href="#poliastro.plotting.OrbitPlotter.set_frame" title="poliastro.plotting.OrbitPlotter.set_frame"><tt class="xref py py-meth docutils literal"><span class="pre">set_frame()</span></tt></a> to set the frame before plotting.</p>
+<dl class="method">
+<dt id="poliastro.plotting.OrbitPlotter.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>ax=None</em>, <em>num_points=100</em><big>)</big><a class="headerlink" href="#poliastro.plotting.OrbitPlotter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ax</strong> (<em>Axes</em>) &#8211; Axes in which to plot. If not given, new ones will be created.</li>
+<li><strong>num_points</strong> (<em>int, optional</em>) &#8211; Number of points to use in plots, default to 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.plotting.OrbitPlotter.set_frame">
+<tt class="descname">set_frame</tt><big>(</big><em>p_vec</em>, <em>q_vec</em>, <em>w_vec</em><big>)</big><a class="headerlink" href="#poliastro.plotting.OrbitPlotter.set_frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets perifocal frame if not existing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><tt class="xref py py-exc docutils literal"><span class="pre">ValueError</span></tt> &#8211;
+If the vectors are not a set of mutually orthogonal unit vectors.</li>
+<li><tt class="xref py py-exc docutils literal"><span class="pre">NotImplementedError</span></tt> &#8211;
+If the frame was already set up.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="poliastro.plotting.OrbitPlotter.plot">
+<tt class="descname">plot</tt><big>(</big><em>state</em>, <em>osculating=True</em><big>)</big><a class="headerlink" href="#poliastro.plotting.OrbitPlotter.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots state and osculating orbit in their plane.</p>
 </dd></dl>
 
 </dd></dl>
@@ -463,6 +547,18 @@ operation (<em>passive</em> or <em>alias</em> transformation) call the function 
 <p>This is a convenience function, equivalent to
 <tt class="docutils literal"><span class="pre">rotate(vec,</span> <span class="pre">-angle,</span> <span class="pre">axis,</span> <span class="pre">unit)</span></tt>.
 Refer to the documentation of <a class="reference internal" href="#poliastro.util.rotate" title="poliastro.util.rotate"><tt class="xref py py-func docutils literal"><span class="pre">rotate()</span></tt></a> for further information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="poliastro.util.check_units">
+<tt class="descclassname">poliastro.util.</tt><tt class="descname">check_units</tt><big>(</big><em>quantities</em>, <em>units</em><big>)</big><a class="headerlink" href="#poliastro.util.check_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if list of quantities is consistent with given list of units.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="poliastro.util.norm">
+<tt class="descclassname">poliastro.util.</tt><tt class="descname">norm</tt><big>(</big><em>vec</em><big>)</big><a class="headerlink" href="#poliastro.util.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Norm of a Quantity vector that respects units.</p>
 </dd></dl>
 
 </div>

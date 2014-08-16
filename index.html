@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>poliastro - Astrodynamics in Python &mdash; poliastro 0.2-dev documentation</title>
+  <title>poliastro - Astrodynamics in Python &mdash; poliastro 0.2.0 documentation</title>
   
 
   
@@ -22,7 +22,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:'./',
-        VERSION:'0.2-dev',
+        VERSION:'0.2.0',
         COLLAPSE_INDEX:false,
         FILE_SUFFIX:'.html',
         HAS_SOURCE:  true
@@ -39,12 +39,12 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
-    <link rel="top" title="poliastro 0.2-dev documentation" href="#"/>
+    <link rel="top" title="poliastro 0.2.0 documentation" href="#"/>
         <link rel="next" title="Getting started" href="getting_started.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -79,6 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#more-advanced-plotting-orbitplotter-objects">More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
@@ -89,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.plotting">poliastro.plotting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -144,8 +146,9 @@ contributions and feedback are more than welcome.</p>
 <p>poliastro works on both Python 2 and 3 and is released under a 2-clause
 BSD license, hence allowing commercial use of the library.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">poliastro.examples</span> <span class="kn">import</span> <span class="n">molniya</span>
+<span class="kn">from</span> <span class="nn">poliastro.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
 
-<span class="n">molniya</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">molniya</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>poliastro relies on some Fortran subroutines written by David A. Vallado for
@@ -166,6 +169,7 @@ in this project under the current license.</p>
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#more-advanced-plotting-orbitplotter-objects">More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
@@ -176,6 +180,7 @@ in this project under the current license.</p>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.plotting">poliastro.plotting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>

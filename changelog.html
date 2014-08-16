@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>What’s new &mdash; poliastro 0.2-dev documentation</title>
+  <title>What’s new &mdash; poliastro 0.2.0 documentation</title>
   
 
   
@@ -22,7 +22,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:'./',
-        VERSION:'0.2-dev',
+        VERSION:'0.2.0',
         COLLAPSE_INDEX:false,
         FILE_SUFFIX:'.html',
         HAS_SOURCE:  true
@@ -39,12 +39,12 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
-    <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
+    <link rel="top" title="poliastro 0.2.0 documentation" href="index.html"/>
         <link rel="next" title="API Reference" href="api.html"/>
         <link rel="prev" title="User guide" href="user_guide.html"/> 
 
@@ -80,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html#more-advanced-plotting-orbitplotter-objects">More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">What&#8217;s new</a><ul>
@@ -90,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.plotting">poliastro.plotting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -126,9 +128,17 @@
 <h2>New in poliastro 0.2<a class="headerlink" href="#new-in-poliastro-0-2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><strong>Totally refactored code</strong> to provide a more pythonic API (see <a class="reference external" href="https://github.com/Pybonacci/poliastro/pull/14">PR #14</a>
-and <a class="reference external" href="https://github.com/Pybonacci/poliastro/wiki">wiki</a> for further information).</li>
+and <a class="reference external" href="https://github.com/Pybonacci/poliastro/wiki">wiki</a> for further information) heavily inspired by <a class="reference external" href="https://github.com/helgee/Plyades">Plyades</a> by
+Helge Eichhorn.<ul>
 <li>Mandatory use of <strong>physical units</strong> through <tt class="code docutils literal"><span class="pre">astropy.units</span></tt>.</li>
+<li>Object-oriented approach: <a class="reference internal" href="api.html#poliastro.twobody.State" title="poliastro.twobody.State"><tt class="xref py py-class docutils literal"><span class="pre">State</span></tt></a> and
+<a class="reference internal" href="api.html#poliastro.maneuver.Maneuver" title="poliastro.maneuver.Maneuver"><tt class="xref py py-class docutils literal"><span class="pre">Maneuver</span></tt></a> classes.</li>
+<li>Vector quantities: results not only have magnitude now, but also direction
+(see for example maneuvers).</li>
+</ul>
+</li>
 <li>Easy plotting of orbits in two dimensions using matplotlib.</li>
+<li>Module <tt class="code docutils literal"><span class="pre">example</span></tt> with sample data to start testing the library.</li>
 </ul>
 <p>These features were removed temporarily not to block the release and will
 see the light again in poliastro 0.3:</p>

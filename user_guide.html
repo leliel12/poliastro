@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User guide &mdash; poliastro 0.2-dev documentation</title>
+  <title>User guide &mdash; poliastro 0.2.0 documentation</title>
   
 
   
@@ -22,7 +22,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:'./',
-        VERSION:'0.2-dev',
+        VERSION:'0.2.0',
         COLLAPSE_INDEX:false,
         FILE_SUFFIX:'.html',
         HAS_SOURCE:  true
@@ -39,12 +39,12 @@
 
   
   
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
-    <link rel="top" title="poliastro 0.2-dev documentation" href="index.html"/>
+    <link rel="top" title="poliastro 0.2.0 documentation" href="index.html"/>
         <link rel="next" title="What’s new" href="changelog.html"/>
         <link rel="prev" title="Getting started" href="getting_started.html"/> 
 
@@ -80,6 +80,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">User guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#defining-the-orbit-state-objects">Defining the orbit: <tt class="code docutils literal"><span class="pre">State</span></tt> objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#changing-the-orbit-maneuver-objects">Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-advanced-plotting-orbitplotter-objects">More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">What&#8217;s new</a><ul>
@@ -90,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.twobody">poliastro.twobody module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.maneuver">poliastro.maneuver module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.bodies">poliastro.bodies module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.plotting">poliastro.plotting module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#module-poliastro.util">poliastro.util module</a></li>
 </ul>
 </li>
@@ -132,7 +134,7 @@ information to define an orbit:</p>
 <li>The position and velocity vectors or the orbital elements.</li>
 <li>The time at which the orbit is defined.</li>
 </ul>
-<p>First of all, we&#8217;ll have to import the relevant code:</p>
+<p>First of all, we have to import the relevant modules and classes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
 
@@ -172,8 +174,12 @@ a subclass of NumPy arrays.</p>
 <img alt="Plot of the orbit" src="_images/curtis.png" />
 </div>
 <p>If we&#8217;re working on interactive mode (for example, using the wonderful IPython
-notebook) we can immediately plot the current state typing <tt class="code docutils literal"><span class="pre">ss.plot()</span></tt> in
-the so called <em>perifocal frame</em> which means:</p>
+notebook) we can immediately plot the current state:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">poliastro.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This plot is made in the so called <em>perifocal frame</em>, which means:</p>
 <ul class="simple">
 <li>we&#8217;re visualizing the plane of the orbit itself,</li>
 <li>the \(x\) axis points to the pericenter, and</li>
@@ -189,7 +195,7 @@ orbit.</p>
 <h3>From classical orbital elements<a class="headerlink" href="#from-classical-orbital-elements" title="Permalink to this headline">¶</a></h3>
 <p>We can also define a <a class="reference internal" href="api.html#poliastro.twobody.State" title="poliastro.twobody.State"><tt class="xref py py-class docutils literal"><span class="pre">State</span></tt></a> using a set of
 six parameters called orbital elements. Although there are several of
-this element sets, each one with its advantages and drawbacks, right now
+these element sets, each one with its advantages and drawbacks, right now
 poliastro supports the <em>classical orbital elements</em>:</p>
 <ul class="simple">
 <li>Semimajor axis \(a\).</li>
@@ -199,13 +205,105 @@ poliastro supports the <em>classical orbital elements</em>:</p>
 <li>Argument of pericenter \(\omega\).</li>
 <li>True anomaly \(\nu\).</li>
 </ul>
+<p>In this case, we&#8217;d use the method
+<a class="reference internal" href="api.html#poliastro.twobody.State.from_elements" title="poliastro.twobody.State.from_elements"><tt class="xref py py-meth docutils literal"><span class="pre">from_elements()</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Data for Mars at J2000 from JPL HORIZONS</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.523679</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">AU</span>
+<span class="n">ecc</span> <span class="o">=</span> <span class="mf">0.093315</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">one</span>
+<span class="n">inc</span> <span class="o">=</span> <span class="mf">1.85</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+<span class="n">raan</span> <span class="o">=</span> <span class="mf">49.562</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+<span class="n">argp</span> <span class="o">=</span> <span class="mf">286.537</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">23.33</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span>
+
+<span class="n">ss</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">from_elements</span><span class="p">(</span><span class="n">Sun</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">inc</span><span class="p">,</span> <span class="n">raan</span><span class="p">,</span> <span class="n">argp</span><span class="p">,</span> <span class="n">nu</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that whether we create a <tt class="docutils literal"><span class="pre">State</span></tt> from \(r\) and \(v\) or from
+elements we can access many mathematical properties individually:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ss</span><span class="o">.</span><span class="n">period</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+<span class="go">&lt;Quantity 686.9713888628166 d&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ss</span><span class="o">.</span><span class="n">v</span>
+<span class="go">&lt;Quantity [  1.16420211, 26.29603612,  0.52229379] km / s&gt;</span>
+</pre></div>
+</div>
+<p>To see a complete list of properties, check out the
+<a class="reference internal" href="api.html#poliastro.twobody.State" title="poliastro.twobody.State"><tt class="xref py py-class docutils literal"><span class="pre">poliastro.twobody.State</span></tt></a> class on the API reference.</p>
 </div>
 </div>
 <div class="section" id="changing-the-orbit-maneuver-objects">
 <h2>Changing the orbit: <tt class="code docutils literal"><span class="pre">Maneuver</span></tt> objects<a class="headerlink" href="#changing-the-orbit-maneuver-objects" title="Permalink to this headline">¶</a></h2>
-<p>poliastro helps us to define several in-plane and general out-of-plane
-maneuvers with the <a class="reference internal" href="api.html#poliastro.maneuver.Maneuver" title="poliastro.maneuver.Maneuver"><tt class="xref py py-class docutils literal"><span class="pre">Maneuver</span></tt></a> inside the
+<p>poliastro helps us define several in-plane and general out-of-plane
+maneuvers with the <a class="reference internal" href="api.html#poliastro.maneuver.Maneuver" title="poliastro.maneuver.Maneuver"><tt class="xref py py-class docutils literal"><span class="pre">Maneuver</span></tt></a> class inside the
 <a class="reference internal" href="api.html#module-poliastro.maneuver" title="poliastro.maneuver"><tt class="xref py py-mod docutils literal"><span class="pre">poliastro.maneuver</span></tt></a> module.</p>
+<p>Each <tt class="docutils literal"><span class="pre">Maneuver</span></tt> consists on a list of impulses \(\Delta v_i\)
+(changes in velocity) each one applied at a certain instant \(t_i\). The
+simplest maneuver is a single change of velocity without delay: you can
+recreate it either using the <a class="reference internal" href="api.html#poliastro.maneuver.Maneuver.impulse" title="poliastro.maneuver.Maneuver.impulse"><tt class="xref py py-meth docutils literal"><span class="pre">impulse()</span></tt></a>
+method or instantiating it directly.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dv</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">m</span> <span class="o">/</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span>
+
+<span class="n">man</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="o">.</span><span class="n">impulse</span><span class="p">(</span><span class="n">dv</span><span class="p">)</span>
+<span class="n">man</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="p">((</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">dv</span><span class="p">))</span>  <span class="c"># Equivalent</span>
+</pre></div>
+</div>
+<p>There are other useful methods you can use to compute common in-plane
+maneuvers, notably <a class="reference internal" href="api.html#poliastro.maneuver.Maneuver.hohmann" title="poliastro.maneuver.Maneuver.hohmann"><tt class="xref py py-meth docutils literal"><span class="pre">hohmann()</span></tt></a> and
+<a class="reference internal" href="api.html#poliastro.maneuver.Maneuver.bielliptic" title="poliastro.maneuver.Maneuver.bielliptic"><tt class="xref py py-meth docutils literal"><span class="pre">bielliptic()</span></tt></a> for <a class="reference external" href="http://en.wikipedia.org/wiki/Hohmann_transfer_orbit">Hohmann</a> and
+<a class="reference external" href="http://en.wikipedia.org/wiki/Bi-elliptic_transfer">bielliptic</a> transfers respectively. Both return the corresponding
+<tt class="docutils literal"><span class="pre">Maneuver</span></tt> object, which in turn you can use to calculate the total cost
+in terms of velocity change (\(\sum |\Delta v_i|\)) and the transfer
+time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ss_i</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">circular</span><span class="p">(</span><span class="n">Earth</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="mi">700</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hoh</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="o">.</span><span class="n">hohmann</span><span class="p">(</span><span class="n">ss_i</span><span class="p">,</span> <span class="mi">36000</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hoh</span><span class="o">.</span><span class="n">get_total_cost</span><span class="p">()</span>
+<span class="go">&lt;Quantity 3.6173981270031357 km / s&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hoh</span><span class="o">.</span><span class="n">get_total_time</span><span class="p">()</span>
+<span class="go">&lt;Quantity 15729.741535747102 s&gt;</span>
+</pre></div>
+</div>
+<p>You can also retrieve the individual vectorial impulses:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hoh</span><span class="o">.</span><span class="n">impulses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">(&lt;Quantity 0 s&gt;, &lt;Quantity [ 0.        , 2.19739818, 0.        ] km / s&gt;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hoh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># Equivalent</span>
+<span class="go">(&lt;Quantity 0 s&gt;, &lt;Quantity [ 0.        , 2.19739818, 0.        ] km / s&gt;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">tuple</span><span class="p">(</span><span class="n">_</span><span class="o">.</span><span class="n">decompose</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">hoh</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">(&lt;Quantity 15729.741535747102 s&gt;, &lt;Quantity [ 0.        , 1.41999995, 0.        ] km / s&gt;)</span>
+</pre></div>
+</div>
+<p>To actually retrieve the resulting <tt class="docutils literal"><span class="pre">State</span></tt> after performing a maneuver, use
+the method <tt class="xref py py-meth docutils literal"><span class="pre">apply_maneuver()</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ss_f</span> <span class="o">=</span> <span class="n">ss_i</span><span class="o">.</span><span class="n">apply_maneuver</span><span class="p">(</span><span class="n">hoh</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ss_f</span><span class="o">.</span><span class="n">rv</span><span class="p">()</span>
+<span class="go">(&lt;Quantity [ -3.60000000e+04, -7.05890200e-11, -0.00000000e+00] km&gt;, &lt;Quantity [ -8.97717523e-16, -3.32749489e+00, -0.00000000e+00] km / s&gt;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-advanced-plotting-orbitplotter-objects">
+<h2>More advanced plotting: <tt class="code docutils literal"><span class="pre">OrbitPlotter</span></tt> objects<a class="headerlink" href="#more-advanced-plotting-orbitplotter-objects" title="Permalink to this headline">¶</a></h2>
+<p>We previously saw the <a class="reference internal" href="api.html#poliastro.plotting.plot" title="poliastro.plotting.plot"><tt class="xref py py-func docutils literal"><span class="pre">poliastro.plotting.plot()</span></tt></a> function to easily
+plot orbits. Now we&#8217;d like to plot several orbits in one graph (for example,
+the maneuver me computed in the previous section). For this purpose, we
+have <a class="reference internal" href="api.html#poliastro.plotting.OrbitPlotter" title="poliastro.plotting.OrbitPlotter"><tt class="xref py py-class docutils literal"><span class="pre">OrbitPlotter</span></tt></a> objects in the
+<a class="reference internal" href="api.html#module-poliastro.plotting" title="poliastro.plotting"><tt class="xref py py-mod docutils literal"><span class="pre">plotting</span></tt></a> module.</p>
+<p>These objects hold the perifocal plane of the first <tt class="docutils literal"><span class="pre">State</span></tt> we plot in
+them, projecting any further trajectories on this plane. This allows to
+easily visualize in two dimensions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">poliastro.plotting</span> <span class="kn">import</span> <span class="n">OrbitPlotter</span>
+
+<span class="n">op</span> <span class="o">=</span> <span class="n">OrbitPlotter</span><span class="p">()</span>
+<span class="n">ss_a</span><span class="p">,</span> <span class="n">ss_f</span> <span class="o">=</span> <span class="n">ss_i</span><span class="o">.</span><span class="n">apply_maneuver</span><span class="p">(</span><span class="n">hoh</span><span class="p">,</span> <span class="n">intermediate</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss_i</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss_a</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss_f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which produces this beautiful plot:</p>
+<div class="figure align-center">
+<img alt="Hohmann transfer" src="_images/hohmann.png" />
+<p class="caption">Plot of a Hohmann transfer.</p>
+</div>
+<p>And that&#8217;s it for the basics of poliastro! Feel free to send my your
+suggestions of improvement, both for the code and the docs.</p>
 </div>
 </div>
 
